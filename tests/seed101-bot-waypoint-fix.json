@@ -1,0 +1,86 @@
+{
+  "completed": true,
+  "elapsed": 57.033,
+  "phase": "finished",
+  "profile": {
+    "active_path": "user://gridkit_test_profile.cfg",
+    "real_hash_before": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+    "real_hash_now": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+    "real_path": "user://gridkit_profile.cfg",
+    "real_unchanged": true,
+    "test_mode": true
+  },
+  "results": [
+    {
+      "end_physics": 4138,
+      "enemies_left": 0,
+      "floor": 3,
+      "floors": [
+        1,
+        2,
+        3
+      ],
+      "hp": 125,
+      "level": 7,
+      "method": "normal stats, observation + Input actions, automatic combat, no controlled clears",
+      "outcome": "victory",
+      "real_elapsed_seconds": 15.183,
+      "seconds": 68.85,
+      "seed": 42,
+      "start_physics": 0,
+      "upgrades": {
+        "armor": 1,
+        "damage": 2,
+        "haste": 2,
+        "health": 1
+      }
+    },
+    {
+      "end_physics": 7942,
+      "enemies_left": 0,
+      "floor": 3,
+      "floors": [
+        1,
+        2,
+        3
+      ],
+      "hp": 100,
+      "level": 7,
+      "method": "normal stats, observation + Input actions, automatic combat, no controlled clears",
+      "outcome": "victory",
+      "real_elapsed_seconds": 14.748,
+      "seconds": 63.17,
+      "seed": 101,
+      "start_physics": 4145,
+      "upgrades": {
+        "damage": 4,
+        "haste": 2
+      }
+    },
+    {
+      "end_physics": 11377,
+      "enemies_left": 5,
+      "floor": 3,
+      "floors": [
+        1,
+        2,
+        3
+      ],
+      "hp": 0,
+      "level": 6,
+      "method": "normal stats, observation + Input actions, automatic combat, no controlled clears",
+      "outcome": "death",
+      "real_elapsed_seconds": 12.548,
+      "seconds": 57.03,
+      "seed": 2026,
+      "start_physics": 7949,
+      "upgrades": {
+        "armor": 1,
+        "damage": 3,
+        "health": 1
+      }
+    }
+  ],
+  "run": {},
+  "seed": 2026
+}

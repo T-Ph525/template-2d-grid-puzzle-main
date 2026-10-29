@@ -1,0 +1,242 @@
+[
+  {
+    "path": "res://scripts/grid.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/grid_entity.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/pickup.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/robot_character.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/visuals.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/player.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/game_manager.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/sprite_character.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/input_router.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/door.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/box.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/autoload/audio_manager.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/enemy.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/level.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/ui/credits.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/tick_manager.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/autoload/game_flow.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/roguelite/combat_feedback.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/roguelite/dungeon_generator.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/autoload/fader.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/autoload/level_manager.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/autoload/ui_theme.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/ui/dev_settings.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/roguelite/navigation_verification.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/ui/level_complete.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/roguelite/playtest_bot.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/roguelite/flow_verification.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/roguelite/verification.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/ui/main_menu.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/roguelite/run_controller.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/roguelite/run_state.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/roguelite/test_launcher.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/ui/level_failed.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/roguelite/hud.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/ui/level_select.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/roguelite/profile.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/ui/settings.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/ui/menu_button.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/ui/pause_menu.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  },
+  {
+    "path": "res://scripts/ui/screen.gd",
+    "checked": 1,
+    "count": 0,
+    "errors": []
+  }
+]

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cal0nyseq3ey2"]
+
+[ext_resource type="Script" uid="uid://ddqln7ffj660q" path="res://scripts/roguelite/verification.gd" id="1_6oigk"]
+
+[node name="RogueliteVerification" type="Node" unique_id=677744714]
+script = ExtResource("1_6oigk")

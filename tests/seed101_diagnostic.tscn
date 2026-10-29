@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://peuty4wypswn"]
+
+[ext_resource type="Script" uid="uid://cfmf1elrd4vic" path="res://scripts/roguelite/playtest_bot.gd" id="1_eo2xo"]
+
+[node name="PlaytestBot" type="Node" unique_id=165714465]
+script = ExtResource("1_eo2xo")
+hold_seed101_stall = true

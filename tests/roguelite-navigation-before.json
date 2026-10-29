@@ -1,0 +1,102 @@
+{
+  "checks": 5,
+  "failures": [
+    {
+      "detail": {
+        "from": "Vector3(4, 0, 3.534)",
+        "to": "Vector3(4, 0, 3.534)"
+      },
+      "name": "enemy approaches target jittering across row boundary",
+      "passed": false,
+      "physics": 121
+    }
+  ],
+  "profile": {
+    "active_path": "user://gridkit_test_profile.cfg",
+    "real_hash_before": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+    "real_hash_now": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+    "real_path": "user://gridkit_profile.cfg",
+    "real_unchanged": true,
+    "test_mode": true
+  },
+  "records": [
+    {
+      "detail": {
+        "actions": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "end": "Vector3(1.933, 0, 3.4)"
+      },
+      "name": "seed101 moving-target waypoint regression",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": {
+        "from": "Vector3(4, 0, 3.534)",
+        "to": "Vector3(4, 0, 3.534)"
+      },
+      "name": "enemy approaches target jittering across row boundary",
+      "passed": false,
+      "physics": 121
+    },
+    {
+      "detail": {
+        "distances": [
+          0.07,
+          0.07,
+          0.07
+        ],
+        "initial": [
+          "Vector3(2, 0, 5)",
+          "Vector3(4, 0, 5)",
+          "Vector3(6, 0, 5)"
+        ]
+      },
+      "name": "three enemies traverse winding one-cell corridor",
+      "passed": true,
+      "physics": 1223
+    },
+    {
+      "detail": null,
+      "name": "unreachable enemy waits without crossing closed door",
+      "passed": true,
+      "physics": 1345
+    },
+    {
+      "detail": "Vector3(1.058, 0, 1)",
+      "name": "enemy replans when door makes target reachable",
+      "passed": true,
+      "physics": 1585
+    }
+  ]
+}

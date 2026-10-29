@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bf2nq0d0ap130"]
+
+[ext_resource type="Script" uid="uid://cw2721ysvkk87" path="res://scripts/roguelite/test_launcher.gd" id="1_frsay"]
+
+[node name="SafeTestLauncher" type="Node" unique_id=2074943290]
+script = ExtResource("1_frsay")

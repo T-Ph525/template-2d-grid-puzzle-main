@@ -1,0 +1,193 @@
+![GridKit](docs/cover.jpg)
+
+# GridKit
+
+## Roguelite survival mode
+
+Press Play in Summer, then choose **Roguelite — New Run**. Enter an optional numeric seed to replay a dungeon layout. Move with WASD or arrows (four directions); melee attacks automatically target the nearest visible enemy in range. Blue orbs grant XP, red orbs heal. Choose one of three upgrades whenever you level up. Clear every enemy, then enter the green exit circle; clear floor three to win. Esc pauses; R restarts the entire run with the same seed. Death, victory and pause overlays offer restart and return to menu.
+
+**Puzzle — Original Levels** and **Puzzle Level Select** retain the five original ASCII puzzles, robot/sprite preference and turn-based/real-time settings. Roguelite always uses the sprite and top-down real-time movement, without changing Puzzle preferences.
+
+Best floor, wins and settings are stored in `user://gridkit_profile.cfg`. Runs themselves are not saved between launches.
+
+Implementation notes and validation: [Roguelite report](docs/roguelite-report.md). Repeat the integration checks by running `tests/roguelite_verification.tscn`; it restores profile statistics/settings after finishing and prints `GRIDKIT_VERIFICATION` with the results.
+
+
+A grid puzzle starter for Summer Engine: push crates, trigger plates, grab keys and dodge a
+chasing enemy, in levels you write as text. Fork it into a Sokoban, a roguelike, a Pac-Man,
+a Zelda-like or a tower defense; the grid is the same, only your rules change.
+
+### Isolated test mode
+
+Run `tests/roguelite_safe_play.tscn` explicitly to play with `user://gridkit_test_profile.cfg`. The HUD shows **TEST PROFILE**. Test mode persists through restart/menu transitions until the game process exits; a fresh normal launch uses the original `user://gridkit_profile.cfg`. You can also pass `-- --gridkit-test` to the engine for a test-profile menu launch.
+
+Automated scenes: `tests/roguelite_bot.tscn` (normal-input seeded runs), `tests/roguelite_verification.tscn` (65 integration checks) and `tests/roguelite_flows.tscn` (8 restart/menu checks), and `tests/roguelite_navigation.tscn` (12 navigation checks). Captured results live in `tests/roguelite-*.json`. They verify that the real save hash stays unchanged. The bot now completes seeds 42, 101, 2026, 7, 73 and 31415 without controlled clears. Per-floor simulated/wall timing and combat measurements are in `tests/roguelite-pacing-measurements.tsv`. Purple tanks guard rooms until approached. Runs remain much shorter than the earlier 10–15 minute aspiration; see the report for evidence and limitations.
+
+## What's inside
+
+- **Five puzzle levels** (Warmup, Vault, Two Crates, Color Lock, The Chase) authored as
+  plain-text ASCII maps. Add a level by typing a grid.
+- **Turn-based or real-time movement**, per level or switched at runtime.
+- **Color-channel logic**: pressure plates, keys and doors in blue, green and red.
+- **Pushable crates, collectible stars and an enemy** that hunts you down.
+- **Two player looks**: the standard Summer robot (rigged 3D) or a classic 2D walk-sheet sprite.
+- **Full menu system**: main menu, level select, settings, credits, pause and level-complete
+  screens, with a Game Boy-green theme and fade transitions.
+- **Light by design and Arduino-ready**: flat-shaded primitives, no shadows, Compatibility
+  renderer, and one input router for keyboard or a serial controller.
+
+## Get started
+
+1. Download this repo as a [ZIP](https://github.com/SummerEngine/template-2d-grid-puzzle/archive/refs/heads/main.zip) or clone it.
+2. Open the folder in [Summer Engine](https://www.summerengine.com/download).
+3. Press Play. The game boots into the main menu.
+
+Summer's AI agent can extend the game for you. Try:
+
+- "Add an ice tile that makes the player slide until they hit a wall."
+- "Make a sixth level that combines the blue plate, the red key and the chasing enemy."
+- "Add a move counter and a par score for each level."
+
+## Controls
+
+| Action | Keys |
+|--------|------|
+| Move | Arrow keys or WASD |
+| Restart level | R |
+| Switch camera (top-down / perspective) | Tab |
+| Action button (wired up for your game) | Space |
+
+## Make it your own
+
+1. **Add / edit levels** — edit the `LEVELS` array in `scripts/autoload/level_manager.gd`.
+   Each entry is `{ "name": ..., "realtime": false, "map": [ ... ] }`. The map is just text:
+   `#` wall · `@` player · `$` crate · `*` star · `.` plate · `K` key · `D` door · space = floor.
+   Add an entry → new level in the sequence and on the Level Select grid.
+
+   **Winning:** collect every `*` star to win. A level with no star falls back to the legacy
+   sokoban rule (push a crate onto each `.` plate).
+
+   **Walls & doors:** `#` walls can go anywhere inside a map, not just the border. A door set
+   into a *vertical* wall (walls above & below) auto-rotates to a left↔right passage; otherwise
+   it's an up↔down passage.
+
+   **Color channels:** doors, plates, and keys share a numbered "channel" (a color). A door
+   opens while a plate of its channel is pressed, or **forever** once a key of its channel is
+   collected. Channel 0 (`.`/`K`/`D`) is colorless; colored channels: blue `b`/`B`/`1`,
+   green `g`/`G`/`2`, red `r`/`R`/`3` (plate / key / door). Add colors in `Visuals.CHANNEL_COLORS`.
+
+2. **Switch genre feel** — set `"realtime": true` on a level for arcade-style continuous
+   movement; `false` for one-step-per-press puzzle movement. Per-level.
+
+3. **Add a new object type** — copy `scripts/box.gd` to e.g. `scripts/coin.gd`, add a letter
+   to `LEGEND` in `scripts/level.gd`, give it a mesh in `scripts/visuals.gd`, and spawn it in
+   `Level.build()`. Override `on_tick()` (acts every world tick) or `on_bump(other)` (someone
+   walked into it) for behaviour.
+
+4. **Change the win rule** — edit `_on_tick()` in `scripts/game_manager.gd`. It runs after
+   every world tick; on a win it sends you to the Level Complete screen.
+
+5. **Make it look like your game** — tile art is pixel-art textures in `art/tiles/`;
+   swap a PNG to reskin a tile (paths live in `scripts/visuals.gd`). The player is a 2D
+   animated sprite from a walk sheet in `art/sprites/` (see below). Menu palette is
+   `scripts/autoload/ui_theme.gd` (change 5 colors, whole UI reskins).
+
+6. **Turn Level Select off** — set `level_select_enabled = false` in `level_manager.gd`
+   (or toggle it in the Settings screen).
+
+## How it fits together
+
+| File | Job |
+|------|-----|
+| `scripts/grid.gd` | Cell ↔ world math, bounds. Pure logic. |
+| `scripts/tick_manager.gd` | The world heartbeat. Timer (real-time) or keypress (turn-based). |
+| `scripts/input_router.gd` | Autoload. Feeds keyboard **and** Arduino into the same input actions. |
+| `scripts/grid_entity.gd` | Base for anything on a cell. Subclass + override `on_tick`/`on_bump`. |
+| `scripts/player.gd` | Reads input on each tick, asks the Level to move. |
+| `scripts/box.gd` | Example pushable crate (the subclassing pattern). |
+| `scripts/level.gd` | Builds the world from the ASCII map; owns the one shared movement rule. |
+| `scripts/visuals.gd` | The only "art": flat-shaded primitive meshes. |
+| `scripts/game_manager.gd` | Plays the current level; handles pause + win. |
+| `game.tscn` | The gameplay scene (one level at a time). |
+
+Everything that moves listens to `TickManager.tick`. That single idea is why the same code
+runs as both a turn-based puzzle and a real-time arcade game.
+
+## Menus & level flow
+
+The boot scene is `screens/main_menu.tscn`. Navigation goes through one autoload:
+`GameFlow.goto("main_menu" | "level_select" | "game" | "level_complete" | "settings" | "credits")`,
+which fades and swaps scenes.
+
+| File | Job |
+|------|-----|
+| `scripts/autoload/game_flow.gd` | Screen manager — `goto(...)`, `play_level(i)`, fade transitions. |
+| `scripts/autoload/level_manager.gd` | The `LEVELS` list + progression + the Level Select on/off flag. |
+| `scripts/autoload/audio_manager.gd` | Sound hooks (`play_ui`, `play_music`) + volume buses. Silent until you add sounds. |
+| `scripts/autoload/ui_theme.gd` | The whole menu look, built in code (no image assets). 5 colors to reskin. |
+| `scripts/autoload/fader.gd` | The fade overlay used between screens. |
+| `scripts/ui/screen.gd` | Base class for menu screens + builder helpers (`make_button`, etc.). |
+| `scripts/ui/menu_button.gd` | Button with hover/click sound + focus pop. |
+| `screens/*.tscn` + `scripts/ui/*.gd` | The individual menu screens. |
+
+To add a screen: make `scripts/ui/foo.gd` (`extends Screen`), a one-line `screens/foo.tscn`,
+register it in `GameFlow.SCREENS`, then `GameFlow.goto("foo")`. See `.summer/ui-system-contract.md`.
+
+## 2D sprite characters (top-down walk sheets)
+
+Characters are 2D animated sprites living in the 3D world — an `AnimatedSprite3D` that
+billboards toward the camera. One call slices any 4-direction walk sheet:
+
+```gdscript
+Visuals.make_sprite_character("res://art/sprites/hero_green.png", 4, 4,
+    {down = 0, up = 1, left = 2, right = 3})
+```
+
+`columns, rows` describe the sheet grid; the dictionary says which ROW holds each direction's
+walk cycle. The sprite picks `walk_down/up/left/right` on its own by watching its motion
+(`scripts/sprite_character.gd`), so the same node works on the player, an enemy, anything —
+in both movement modes. Drop a new sheet in `art/sprites/`, adjust the numbers, done.
+
+Included sheets (both with transparent backgrounds):
+- `hero_green.png` — 4×4, rows down/up/left/right. The default player.
+- `hero_cape.png` — 6×8 grid, 40×56 frames. Extra character; check the sheet and map the
+  rows you want when using it.
+
+## Adding sounds
+
+`AudioManager` is wired everywhere but silent until you give it streams:
+```gdscript
+AudioManager.register_ui("click", preload("res://sfx/click.wav"))
+AudioManager.register_ui("hover", preload("res://sfx/hover.wav"))
+AudioManager.play_music(preload("res://music/theme.ogg"))
+```
+Buttons already call `play_ui("hover"/"click")`; volume sliders live in the Settings screen.
+
+## Plugging in an Arduino
+
+The game only ever reads input *actions* (`move_up`, `move_down`, `move_left`, `move_right`,
+`action`), never the keyboard directly. So a controller just has to feed those actions.
+
+`scripts/input_router.gd` is the one place that does it. Suggested protocol: the Arduino sends
+**one byte per update**, one bit per button:
+
+```
+bit 0 = up   bit 1 = down   bit 2 = left   bit 3 = right   bit 4 = action
+```
+
+Godot can't read a serial port on its own — install a serial GDExtension (Asset Library →
+search "serial"), then fill in `_open_serial()` and `_poll_serial()` in `input_router.gd`.
+Until then it silently stays on the keyboard, so you can build the whole game first and add
+the controller at the end.
+
+## Performance notes (the "it runs on a weak handheld" budget)
+- Compatibility (GLES3) renderer, set in `project.godot`.
+- All materials are `SHADING_MODE_UNSHADED` → no lighting cost, no shadows.
+- One orthographic camera, one ground plane, a handful of primitive meshes.
+
+Add heavy stuff (real lights, shadows, particles, high-poly imports) only if your target
+hardware can afford it.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Free to use, modify, and share; just keep the copyright notice.

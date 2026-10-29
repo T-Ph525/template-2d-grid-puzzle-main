@@ -1,0 +1,133 @@
+extends Node3D
+
+## Runs ONE level -- whichever LevelManager currently points at. The level list lives in
+## scripts/autoload/level_manager.gd; this just plays the current entry, handles pause
+## (Esc), and on a win advances the flow to the Level Complete screen.
+##
+## Camera: press Tab to cycle between top-down and perspective. Press R to restart the level.
+## The view is stored on LevelManager.cam_view; the Dev Settings screen also controls it.
+##
+## Movement: real-time mode uses CharacterBody3D.move_and_slide() with real collision
+## against walls and boxes. Turn-based mode uses the grid tick system.
+
+const PAUSE_SCENE := preload("res://screens/pause_menu.tscn")
+const CAM_LABELS := ["top-down", "perspective"]
+const MOVE_LABELS := ["turn-based", "real-time"]
+
+@onready var tick_manager: TickManager = $TickManager
+@onready var level: Level = $Level
+@onready var camera: Camera3D = $Camera3D
+@onready var status_label: Label = $UI/Status
+
+var _won := false
+var _lost := false
+var _pause_instance: Node = null
+var _cam_center: Vector3
+var _cam_grid_size: float
+var _status_text: String = ""
+
+var rogue_controller = null
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_PAUSABLE
+	if LevelManager.game_mode == "roguelite":
+		rogue_controller = load("res://scripts/roguelite/run_controller.gd").new()
+		rogue_controller.name = "Roguelite"
+		add_child(rogue_controller)
+		rogue_controller.setup(self)
+		return
+	var data: Dictionary = LevelManager.current()
+	var map: Array = data["map"]
+
+	var grid := Grid.new(_map_width(map), map.size(), 1.0)
+	level.build(map, grid, tick_manager)
+	_cam_center = grid.center_world()
+	_cam_grid_size = max(grid.width, grid.height)
+	_apply_camera()
+
+	tick_manager.interval = 0.14
+	level.won.connect(_on_won)    # Level decides when the win condition is met
+	level.lost.connect(_on_lost)  # ...and when an enemy catches the player
+	_apply_move_mode()
+
+	_status_text = data.get("name", "Level")
+	_refresh_status()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if rogue_controller != null:
+		if event.is_action_pressed("ui_cancel"):
+			rogue_controller.open_pause()
+		elif event.is_action_pressed("restart"):
+			rogue_controller.restart_run()
+		return
+	if _won or _lost:
+		return
+	if event.is_action_pressed("ui_cancel"):
+		_open_pause()
+	elif event.is_action_pressed("restart"):
+		GameFlow.goto("game")   # reload the current level
+	elif event.is_action_pressed("camera_toggle"):
+		LevelManager.cam_view = wrapi(LevelManager.cam_view + 1, 0, 2)
+		_apply_camera()
+
+func _open_pause() -> void:
+	if _pause_instance != null and is_instance_valid(_pause_instance):
+		return  # already open; the pause menu closes itself
+	_pause_instance = PAUSE_SCENE.instantiate()
+	add_child(_pause_instance)
+
+func _on_won() -> void:
+	if _won or _lost:
+		return
+	_won = true
+	LevelManager.mark_complete(LevelManager.current_index)
+	_status_text = "Solved!"
+	_refresh_status()
+	await get_tree().create_timer(0.8).timeout
+	GameFlow.goto("level_complete")
+
+func _on_lost() -> void:
+	if _won or _lost:
+		return
+	_lost = true
+	_status_text = "Caught!"
+	_refresh_status()
+	await get_tree().create_timer(0.8).timeout
+	GameFlow.goto("level_failed")
+
+func _map_width(map: Array) -> int:
+	var w := 0
+	for line in map:
+		w = max(w, line.length())
+	return w
+
+func _apply_camera() -> void:
+	match LevelManager.cam_view:
+		0:  # top-down
+			camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+			camera.size = _cam_grid_size * 0.9
+			camera.position = _cam_center + Vector3(0, 20, 0)
+			camera.look_at(_cam_center, Vector3(0, 0, -1))
+		1:  # perspective
+			camera.projection = Camera3D.PROJECTION_PERSPECTIVE
+			camera.fov = 40.0
+			camera.position = _cam_center + Vector3(0, 8, 4)
+			camera.look_at(_cam_center)
+
+	_refresh_status()
+
+func _apply_move_mode() -> void:
+	var realtime := LevelManager.move_mode == 1
+	tick_manager.mode = TickManager.Mode.REALTIME if realtime else TickManager.Mode.TURN_BASED
+
+	# Flip every mover between physics and grid control. In real-time the player uses
+	# CharacterBody3D.move_and_slide() and crates become dynamic RigidBody3D physics; in
+	# turn-based both are grid-controlled (player lerps, crate is frozen/kinematic).
+	for child in level.get_children():
+		if child.has_method("set_physics_active"):
+			child.set_physics_active(realtime)
+
+func _refresh_status() -> void:
+	status_label.text = "%s  [Tab: %s | %s]" % [
+		_status_text, CAM_LABELS[LevelManager.cam_view], MOVE_LABELS[LevelManager.move_mode]
+	]

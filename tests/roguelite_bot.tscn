@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bmbsm2mwd35au"]
+
+[ext_resource type="Script" uid="uid://cfmf1elrd4vic" path="res://scripts/roguelite/playtest_bot.gd" id="1_2hark"]
+
+[node name="PlaytestBot" type="Node" unique_id=1937252851]
+script = ExtResource("1_2hark")

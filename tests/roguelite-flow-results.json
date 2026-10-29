@@ -1,0 +1,77 @@
+{
+  "checks": 8,
+  "failures": [],
+  "profile": {
+    "active_path": "user://gridkit_test_profile.cfg",
+    "real_hash_before": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+    "real_hash_now": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+    "real_path": "user://gridkit_profile.cfg",
+    "real_unchanged": true,
+    "test_mode": true
+  },
+  "records": [
+    {
+      "detail": null,
+      "frame": 26,
+      "name": "start flow settled",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "frame": 26,
+      "name": "new test run",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "frame": 26,
+      "name": "restart fixture damaged",
+      "passed": true
+    },
+    {
+      "detail": {
+        "choices": [],
+        "ended": false,
+        "enemies": 8,
+        "exit_active": false,
+        "floor": 1,
+        "hp": 100,
+        "level": 1,
+        "max_hp": 100,
+        "overlay": "",
+        "paused": false,
+        "pending": 0,
+        "seed": 42,
+        "upgrades": {},
+        "xp": 0
+      },
+      "frame": 52,
+      "name": "restart same seed resets run",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "frame": 52,
+      "name": "normal pause overlay",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "frame": 52,
+      "name": "normal resume",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "frame": 78,
+      "name": "paused return to menu",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "frame": 78,
+      "name": "flow tests preserve real profile",
+      "passed": true
+    }
+  ]
+}

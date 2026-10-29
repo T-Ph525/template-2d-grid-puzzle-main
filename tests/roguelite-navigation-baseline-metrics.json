@@ -1,0 +1,597 @@
+{
+  "completed": true,
+  "elapsed": 70.933,
+  "phase": "finished",
+  "profile": {
+    "active_path": "user://gridkit_test_profile.cfg",
+    "real_hash_before": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+    "real_hash_now": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+    "real_path": "user://gridkit_profile.cfg",
+    "real_unchanged": true,
+    "test_mode": true
+  },
+  "results": [
+    {
+      "end_physics": 4358,
+      "enemies_left": 0,
+      "floor": 3,
+      "floor_metrics": [
+        {
+          "blocked_seconds": 0,
+          "clear_at": 13.917,
+          "damage_received": 56,
+          "distance": 67.8,
+          "encounter_seconds": 13.9,
+          "enemies_left": 0,
+          "exit_travel_seconds": 6.233,
+          "floor": 1,
+          "healing": 55,
+          "kills": 8,
+          "movement_seconds": 16.95,
+          "outcome": "cleared",
+          "sim_seconds": 20.15,
+          "spawned": 8,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "haste",
+            "haste"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 4.686,
+          "xp_gained": 38
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 17.6,
+          "damage_received": 36,
+          "distance": 79.733,
+          "encounter_seconds": 17.583,
+          "enemies_left": 0,
+          "exit_travel_seconds": 8.767,
+          "floor": 2,
+          "healing": 37,
+          "kills": 11,
+          "movement_seconds": 19.933,
+          "outcome": "cleared",
+          "sim_seconds": 26.367,
+          "spawned": 11,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "damage",
+            "damage"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 5.885,
+          "xp_gained": 50
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 16.983,
+          "damage_received": 34,
+          "distance": 80,
+          "encounter_seconds": 16.967,
+          "enemies_left": 0,
+          "exit_travel_seconds": 9.017,
+          "floor": 3,
+          "healing": 34,
+          "kills": 14,
+          "movement_seconds": 20,
+          "outcome": "cleared",
+          "sim_seconds": 26,
+          "spawned": 14,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "damage",
+            "damage"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 5.767,
+          "xp_gained": 65
+        }
+      ],
+      "floors": [
+        1,
+        2,
+        3
+      ],
+      "hp": 100,
+      "level": 7,
+      "method": "normal stats, observation + Input actions, automatic combat, no controlled clears",
+      "outcome": "victory",
+      "real_elapsed_seconds": 16.277,
+      "seconds": 72.52,
+      "seed": 42,
+      "start_physics": 0,
+      "upgrades": {
+        "damage": 4,
+        "haste": 2
+      }
+    },
+    {
+      "end_physics": 8882,
+      "enemies_left": 0,
+      "floor": 3,
+      "floor_metrics": [
+        {
+          "blocked_seconds": 0,
+          "clear_at": 14.317,
+          "damage_received": 34,
+          "distance": 57.6,
+          "encounter_seconds": 14.3,
+          "enemies_left": 0,
+          "exit_travel_seconds": 5.65,
+          "floor": 1,
+          "healing": 34,
+          "kills": 8,
+          "movement_seconds": 14.4,
+          "outcome": "cleared",
+          "sim_seconds": 19.967,
+          "spawned": 8,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "health",
+            "haste"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 4.427,
+          "xp_gained": 38
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 20.167,
+          "damage_received": 48,
+          "distance": 90.4,
+          "encounter_seconds": 20.15,
+          "enemies_left": 0,
+          "exit_travel_seconds": 9.983,
+          "floor": 2,
+          "healing": 48,
+          "kills": 11,
+          "movement_seconds": 22.6,
+          "outcome": "cleared",
+          "sim_seconds": 30.15,
+          "spawned": 11,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "damage",
+            "damage"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 6.741,
+          "xp_gained": 50
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 19.167,
+          "damage_received": 60,
+          "distance": 79.067,
+          "encounter_seconds": 19.15,
+          "enemies_left": 0,
+          "exit_travel_seconds": 5.9,
+          "floor": 3,
+          "healing": 25,
+          "kills": 14,
+          "movement_seconds": 19.767,
+          "outcome": "cleared",
+          "sim_seconds": 25.067,
+          "spawned": 14,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "damage",
+            "haste"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 5.542,
+          "xp_gained": 65
+        }
+      ],
+      "floors": [
+        1,
+        2,
+        3
+      ],
+      "hp": 90,
+      "level": 7,
+      "method": "normal stats, observation + Input actions, automatic combat, no controlled clears",
+      "outcome": "victory",
+      "real_elapsed_seconds": 16.651,
+      "seconds": 75.17,
+      "seed": 101,
+      "start_physics": 4365,
+      "upgrades": {
+        "damage": 3,
+        "haste": 2,
+        "health": 1
+      }
+    },
+    {
+      "end_physics": 13488,
+      "enemies_left": 0,
+      "floor": 3,
+      "floor_metrics": [
+        {
+          "blocked_seconds": 0,
+          "clear_at": 13.333,
+          "damage_received": 12,
+          "distance": 50.067,
+          "encounter_seconds": 13.317,
+          "enemies_left": 0,
+          "exit_travel_seconds": 3.75,
+          "floor": 1,
+          "healing": 12,
+          "kills": 8,
+          "movement_seconds": 12.517,
+          "outcome": "cleared",
+          "sim_seconds": 17.083,
+          "spawned": 8,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "damage",
+            "damage"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 3.785,
+          "xp_gained": 38
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 15.05,
+          "damage_received": 12,
+          "distance": 63.933,
+          "encounter_seconds": 15.033,
+          "enemies_left": 0,
+          "exit_travel_seconds": 6.967,
+          "floor": 2,
+          "healing": 12,
+          "kills": 11,
+          "movement_seconds": 15.983,
+          "outcome": "cleared",
+          "sim_seconds": 22.017,
+          "spawned": 11,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "haste",
+            "armor"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 4.816,
+          "xp_gained": 50
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 21.95,
+          "damage_received": 60,
+          "distance": 125.6,
+          "encounter_seconds": 21.933,
+          "enemies_left": 0,
+          "exit_travel_seconds": 15.5,
+          "floor": 3,
+          "healing": 40,
+          "kills": 14,
+          "movement_seconds": 31.4,
+          "outcome": "cleared",
+          "sim_seconds": 37.45,
+          "spawned": 14,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "health",
+            "damage"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 8.138,
+          "xp_gained": 65
+        }
+      ],
+      "floors": [
+        1,
+        2,
+        3
+      ],
+      "hp": 105,
+      "level": 7,
+      "method": "normal stats, observation + Input actions, automatic combat, no controlled clears",
+      "outcome": "victory",
+      "real_elapsed_seconds": 16.669,
+      "seconds": 76.53,
+      "seed": 2026,
+      "start_physics": 8889,
+      "upgrades": {
+        "armor": 1,
+        "damage": 3,
+        "haste": 1,
+        "health": 1
+      }
+    },
+    {
+      "end_physics": 17762,
+      "enemies_left": 0,
+      "floor": 3,
+      "floor_metrics": [
+        {
+          "blocked_seconds": 0,
+          "clear_at": 14.283,
+          "damage_received": 34,
+          "distance": 63.333,
+          "encounter_seconds": 14.267,
+          "enemies_left": 0,
+          "exit_travel_seconds": 6.25,
+          "floor": 1,
+          "healing": 25,
+          "kills": 8,
+          "movement_seconds": 15.833,
+          "outcome": "cleared",
+          "sim_seconds": 20.533,
+          "spawned": 8,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "damage",
+            "damage"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 4.564,
+          "xp_gained": 38
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 15.767,
+          "damage_received": 36,
+          "distance": 74.6,
+          "encounter_seconds": 15.75,
+          "enemies_left": 0,
+          "exit_travel_seconds": 6.767,
+          "floor": 2,
+          "healing": 9,
+          "kills": 11,
+          "movement_seconds": 18.65,
+          "outcome": "cleared",
+          "sim_seconds": 22.533,
+          "spawned": 11,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "damage",
+            "damage"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 4.892,
+          "xp_gained": 50
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 20.733,
+          "damage_received": 60,
+          "distance": 89.333,
+          "encounter_seconds": 20.717,
+          "enemies_left": 0,
+          "exit_travel_seconds": 7.217,
+          "floor": 3,
+          "healing": 96,
+          "kills": 14,
+          "movement_seconds": 22.333,
+          "outcome": "cleared",
+          "sim_seconds": 27.95,
+          "spawned": 14,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "damage",
+            "damage"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 6.395,
+          "xp_gained": 65
+        }
+      ],
+      "floors": [
+        1,
+        2,
+        3
+      ],
+      "hp": 100,
+      "level": 7,
+      "method": "normal stats, observation + Input actions, automatic combat, no controlled clears",
+      "outcome": "victory",
+      "real_elapsed_seconds": 15.796,
+      "seconds": 71,
+      "seed": 7,
+      "start_physics": 13495,
+      "upgrades": {
+        "damage": 6
+      }
+    },
+    {
+      "end_physics": 21741,
+      "enemies_left": 0,
+      "floor": 3,
+      "floor_metrics": [
+        {
+          "blocked_seconds": 0,
+          "clear_at": 13.817,
+          "damage_received": 78,
+          "distance": 68.467,
+          "encounter_seconds": 13.8,
+          "enemies_left": 0,
+          "exit_travel_seconds": 6.183,
+          "floor": 1,
+          "healing": 55,
+          "kills": 8,
+          "movement_seconds": 17.117,
+          "outcome": "cleared",
+          "sim_seconds": 20,
+          "spawned": 8,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "damage",
+            "haste"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 4.364,
+          "xp_gained": 38
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 15.033,
+          "damage_received": 12,
+          "distance": 76,
+          "encounter_seconds": 15.017,
+          "enemies_left": 0,
+          "exit_travel_seconds": 8.983,
+          "floor": 2,
+          "healing": 35,
+          "kills": 11,
+          "movement_seconds": 19,
+          "outcome": "cleared",
+          "sim_seconds": 24.017,
+          "spawned": 11,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "haste",
+            "haste"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 5.227,
+          "xp_gained": 50
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 16.65,
+          "damage_received": 36,
+          "distance": 66.733,
+          "encounter_seconds": 16.633,
+          "enemies_left": 0,
+          "exit_travel_seconds": 5.433,
+          "floor": 3,
+          "healing": 36,
+          "kills": 14,
+          "movement_seconds": 16.683,
+          "outcome": "cleared",
+          "sim_seconds": 22.083,
+          "spawned": 14,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "damage",
+            "armor"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 5.078,
+          "xp_gained": 65
+        }
+      ],
+      "floors": [
+        1,
+        2,
+        3
+      ],
+      "hp": 100,
+      "level": 7,
+      "method": "normal stats, observation + Input actions, automatic combat, no controlled clears",
+      "outcome": "victory",
+      "real_elapsed_seconds": 14.62,
+      "seconds": 66.08,
+      "seed": 73,
+      "start_physics": 17769,
+      "upgrades": {
+        "armor": 1,
+        "damage": 2,
+        "haste": 3
+      }
+    },
+    {
+      "end_physics": 26011,
+      "enemies_left": 0,
+      "floor": 3,
+      "floor_metrics": [
+        {
+          "blocked_seconds": 0,
+          "clear_at": 13.667,
+          "damage_received": 34,
+          "distance": 58.6,
+          "encounter_seconds": 13.65,
+          "enemies_left": 0,
+          "exit_travel_seconds": 6.283,
+          "floor": 1,
+          "healing": 25,
+          "kills": 8,
+          "movement_seconds": 14.65,
+          "outcome": "cleared",
+          "sim_seconds": 19.95,
+          "spawned": 8,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "damage",
+            "health"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 4.382,
+          "xp_gained": 38
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 16.483,
+          "damage_received": 36,
+          "distance": 70.2,
+          "encounter_seconds": 16.467,
+          "enemies_left": 0,
+          "exit_travel_seconds": 6.767,
+          "floor": 2,
+          "healing": 45,
+          "kills": 11,
+          "movement_seconds": 17.55,
+          "outcome": "cleared",
+          "sim_seconds": 23.25,
+          "spawned": 11,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "haste",
+            "damage"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 5.095,
+          "xp_gained": 50
+        },
+        {
+          "blocked_seconds": 0,
+          "clear_at": 20.517,
+          "damage_received": 92,
+          "distance": 88.533,
+          "encounter_seconds": 20.5,
+          "enemies_left": 0,
+          "exit_travel_seconds": 7.233,
+          "floor": 3,
+          "healing": 70,
+          "kills": 14,
+          "movement_seconds": 22.133,
+          "outcome": "cleared",
+          "sim_seconds": 27.75,
+          "spawned": 14,
+          "unreachable_enemies": 0,
+          "upgrade_ids": [
+            "health",
+            "health"
+          ],
+          "upgrades": 2,
+          "wall_seconds": 6.06,
+          "xp_gained": 65
+        }
+      ],
+      "floors": [
+        1,
+        2,
+        3
+      ],
+      "hp": 153,
+      "level": 7,
+      "method": "normal stats, observation + Input actions, automatic combat, no controlled clears",
+      "outcome": "victory",
+      "real_elapsed_seconds": 15.485,
+      "seconds": 70.93,
+      "seed": 31415,
+      "start_physics": 21748,
+      "upgrades": {
+        "damage": 2,
+        "haste": 1,
+        "health": 3
+      }
+    }
+  ],
+  "run": {},
+  "seed": 31415
+}

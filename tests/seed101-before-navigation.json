@@ -1,0 +1,25 @@
+{
+  "timeout": {
+    "end_physics": 18283,
+    "enemies_left": 6,
+    "floor": 2,
+    "floors": [
+      1,
+      2
+    ],
+    "hp": 100,
+    "level": 4,
+    "method": "normal stats, observation + Input actions, automatic combat, no controlled clears",
+    "outcome": "timeout",
+    "real_elapsed_seconds": 53.637,
+    "seconds": 240,
+    "seed": 101,
+    "start_physics": 3880,
+    "upgrades": {
+      "damage": 2,
+      "haste": 1
+    }
+  },
+  "deterministic_frame_trace": "tests/seed101-stall-trace.json",
+  "note": "Detailed trace records seed 101 floor 2 at frames 6820-6823; unrelated later-seed debugger probes excluded."
+}

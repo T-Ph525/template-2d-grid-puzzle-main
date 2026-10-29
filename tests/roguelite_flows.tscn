@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cubaq36n86ldj"]
+
+[ext_resource type="Script" uid="uid://c8a3jmowbty8p" path="res://scripts/roguelite/flow_verification.gd" id="1_uepfy"]
+
+[node name="FlowVerification" type="Node" unique_id=1714058327]
+script = ExtResource("1_uepfy")

@@ -1,0 +1,488 @@
+{
+  "checks": 65,
+  "failures": [],
+  "profile": {
+    "active_path": "user://gridkit_test_profile.cfg",
+    "real_hash_before": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+    "real_hash_now": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+    "real_path": "user://gridkit_profile.cfg",
+    "real_unchanged": true,
+    "test_mode": true
+  },
+  "records": [
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "normal save path preserved",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "explicit test profile selected",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "stale normal profile write redirected",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "stale reference cannot write real progress",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "isolated profile roundtrip",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "corrupt test save defaults",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": 0,
+      "frame": 0,
+      "name": "900 maps across 300 deterministic seeds",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "fallback floor 1",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "fallback floor 2",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "fallback floor 3",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "upgrade damage",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "upgrade haste",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "upgrade health",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "upgrade speed",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "upgrade range",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "upgrade armor",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "legacy map builds 0",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 0,
+      "name": "legacy star win",
+      "passed": true,
+      "physics": 1
+    },
+    {
+      "detail": null,
+      "frame": 2,
+      "name": "legacy map builds 1",
+      "passed": true,
+      "physics": 3
+    },
+    {
+      "detail": null,
+      "frame": 2,
+      "name": "legacy key opens door",
+      "passed": true,
+      "physics": 3
+    },
+    {
+      "detail": null,
+      "frame": 4,
+      "name": "legacy map builds 2",
+      "passed": true,
+      "physics": 5
+    },
+    {
+      "detail": null,
+      "frame": 4,
+      "name": "legacy crate push",
+      "passed": true,
+      "physics": 5
+    },
+    {
+      "detail": null,
+      "frame": 4,
+      "name": "legacy blue plate",
+      "passed": true,
+      "physics": 5
+    },
+    {
+      "detail": null,
+      "frame": 6,
+      "name": "legacy map builds 3",
+      "passed": true,
+      "physics": 7
+    },
+    {
+      "detail": null,
+      "frame": 6,
+      "name": "legacy door orientation",
+      "passed": true,
+      "physics": 7
+    },
+    {
+      "detail": null,
+      "frame": 8,
+      "name": "legacy map builds 4",
+      "passed": true,
+      "physics": 9
+    },
+    {
+      "detail": null,
+      "frame": 8,
+      "name": "legacy enemy catch",
+      "passed": true,
+      "physics": 9
+    },
+    {
+      "detail": null,
+      "frame": 10,
+      "name": "LOS blocks wall",
+      "passed": true,
+      "physics": 11
+    },
+    {
+      "detail": null,
+      "frame": 10,
+      "name": "LOS blocks closed door",
+      "passed": true,
+      "physics": 11
+    },
+    {
+      "detail": 10,
+      "frame": 10,
+      "name": "BFS reaches enemy around barrier",
+      "passed": true,
+      "physics": 11
+    },
+    {
+      "detail": null,
+      "frame": 10,
+      "name": "LOS permits opened door",
+      "passed": true,
+      "physics": 11
+    },
+    {
+      "detail": null,
+      "frame": 10,
+      "name": "automatic melee respects wall",
+      "passed": true,
+      "physics": 11
+    },
+    {
+      "detail": {
+        "from": "Vector3(5, 0, 1)",
+        "to": "Vector3(1.07, 0, 1.004)"
+      },
+      "frame": 340,
+      "name": "enemy navigates around wall and closed door",
+      "passed": true,
+      "physics": 341
+    },
+    {
+      "detail": {
+        "before_physics": 343,
+        "from": "Vector3(3, 0, 3)",
+        "to": "Vector3(3, 0, 4)"
+      },
+      "frame": 357,
+      "name": "real-time input moves player",
+      "passed": true,
+      "physics": 358
+    },
+    {
+      "detail": null,
+      "frame": 357,
+      "name": "sprite default",
+      "passed": true,
+      "physics": 358
+    },
+    {
+      "detail": 88,
+      "frame": 357,
+      "name": "100 HP and invulnerability",
+      "passed": true,
+      "physics": 358
+    },
+    {
+      "detail": null,
+      "frame": 357,
+      "name": "telemetry counts accepted damage only",
+      "passed": true,
+      "physics": 358
+    },
+    {
+      "detail": null,
+      "frame": 357,
+      "name": "damage numbers fire only for accepted damage",
+      "passed": true,
+      "physics": 358
+    },
+    {
+      "detail": 76,
+      "frame": 412,
+      "name": "invulnerability expires",
+      "passed": true,
+      "physics": 413
+    },
+    {
+      "detail": null,
+      "frame": 414,
+      "name": "health pickup heals",
+      "passed": true,
+      "physics": 415
+    },
+    {
+      "detail": null,
+      "frame": 414,
+      "name": "telemetry counts actual pickup healing",
+      "passed": true,
+      "physics": 415
+    },
+    {
+      "detail": null,
+      "frame": 416,
+      "name": "level-up pauses with three distinct offers",
+      "passed": true,
+      "physics": 417
+    },
+    {
+      "detail": {
+        "attacks_after": 0,
+        "attacks_before": 0,
+        "from": "Vector3(3, 0, 4)",
+        "to": "Vector3(3, 0, 4)"
+      },
+      "frame": 431,
+      "name": "upgrade pause stops actors",
+      "passed": true,
+      "physics": 432
+    },
+    {
+      "detail": null,
+      "frame": 431,
+      "name": "upgrade resumes gameplay",
+      "passed": true,
+      "physics": 432
+    },
+    {
+      "detail": null,
+      "frame": 431,
+      "name": "telemetry records chosen upgrade",
+      "passed": true,
+      "physics": 432
+    },
+    {
+      "detail": null,
+      "frame": 433,
+      "name": "pause menu",
+      "passed": true,
+      "physics": 434
+    },
+    {
+      "detail": null,
+      "frame": 433,
+      "name": "resume menu",
+      "passed": true,
+      "physics": 434
+    },
+    {
+      "detail": null,
+      "frame": 433,
+      "name": "windup precedes damage",
+      "passed": true,
+      "physics": 434
+    },
+    {
+      "detail": null,
+      "frame": 433,
+      "name": "dodged telegraph does not damage player",
+      "passed": true,
+      "physics": 434
+    },
+    {
+      "detail": null,
+      "frame": 433,
+      "name": "landed telegraph deals actual contact damage",
+      "passed": true,
+      "physics": 434
+    },
+    {
+      "detail": null,
+      "frame": 483,
+      "name": "automatic attack kills and drops XP",
+      "passed": true,
+      "physics": 484
+    },
+    {
+      "detail": null,
+      "frame": 483,
+      "name": "strike and death feedback follow real hits",
+      "passed": true,
+      "physics": 484
+    },
+    {
+      "detail": null,
+      "frame": 485,
+      "name": "death stops run",
+      "passed": true,
+      "physics": 486
+    },
+    {
+      "detail": null,
+      "frame": 487,
+      "name": "floor reached 1",
+      "passed": true,
+      "physics": 488
+    },
+    {
+      "detail": null,
+      "frame": 489,
+      "name": "exit activates after clear 1",
+      "passed": true,
+      "physics": 490
+    },
+    {
+      "detail": null,
+      "frame": 489,
+      "name": "exit unlock feedback fires once 1",
+      "passed": true,
+      "physics": 490
+    },
+    {
+      "detail": null,
+      "frame": 492,
+      "name": "floor reached 2",
+      "passed": true,
+      "physics": 493
+    },
+    {
+      "detail": null,
+      "frame": 494,
+      "name": "exit activates after clear 2",
+      "passed": true,
+      "physics": 495
+    },
+    {
+      "detail": null,
+      "frame": 494,
+      "name": "exit unlock feedback fires once 2",
+      "passed": true,
+      "physics": 495
+    },
+    {
+      "detail": null,
+      "frame": 497,
+      "name": "floor reached 3",
+      "passed": true,
+      "physics": 498
+    },
+    {
+      "detail": null,
+      "frame": 499,
+      "name": "exit activates after clear 3",
+      "passed": true,
+      "physics": 500
+    },
+    {
+      "detail": null,
+      "frame": 499,
+      "name": "exit unlock feedback fires once 3",
+      "passed": true,
+      "physics": 500
+    },
+    {
+      "detail": null,
+      "frame": 502,
+      "name": "floor three victory",
+      "passed": true,
+      "physics": 503
+    },
+    {
+      "detail": null,
+      "frame": 502,
+      "name": "per-floor measurements finalized once",
+      "passed": true,
+      "physics": 503
+    },
+    {
+      "detail": {
+        "active_path": "user://gridkit_test_profile.cfg",
+        "real_hash_before": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+        "real_hash_now": "49494ce56eb3c40130a777bd3e2c1a4b627e6b03221a5e358d89c5b0ce47e3d7",
+        "real_path": "user://gridkit_profile.cfg",
+        "real_unchanged": true,
+        "test_mode": true
+      },
+      "frame": 504,
+      "name": "real player profile unchanged",
+      "passed": true,
+      "physics": 505
+    }
+  ]
+}
