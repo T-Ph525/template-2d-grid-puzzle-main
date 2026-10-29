@@ -30,6 +30,8 @@ var rogue_controller = null
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_PAUSABLE
+	if OS.has_environment("GRIDKIT_CAPTURE_PATH"):
+		_capture_visual_evidence()
 	if LevelManager.game_mode == "roguelite":
 		rogue_controller = load("res://scripts/roguelite/run_controller.gd").new()
 		rogue_controller.name = "Roguelite"
@@ -131,3 +133,14 @@ func _refresh_status() -> void:
 	status_label.text = "%s  [Tab: %s | %s]" % [
 		_status_text, CAM_LABELS[LevelManager.cam_view], MOVE_LABELS[LevelManager.move_mode]
 	]
+
+
+func _capture_visual_evidence() -> void:
+	await get_tree().create_timer(1.8).timeout
+	await RenderingServer.frame_post_draw
+	var image := get_viewport().get_texture().get_image()
+	var error := image.save_png(OS.get_environment("GRIDKIT_CAPTURE_PATH"))
+	if error != OK:
+		push_error(error_string(error))
+	print("GRIDKIT_CAPTURE ", ProjectSettings.globalize_path(OS.get_environment("GRIDKIT_CAPTURE_PATH")))
+	get_tree().quit()

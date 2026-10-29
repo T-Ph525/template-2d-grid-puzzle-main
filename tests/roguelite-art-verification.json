@@ -1,0 +1,141 @@
+{
+    "date":  "2026-10-30",
+    "scope":  "dark-fantasy roguelite visual vertical slice, floor 1 art review plus all existing suites",
+    "paid_assets":  false,
+    "script_check":  {
+                         "scripts":  46,
+                         "errors":  0
+                     },
+    "visual_suite":  {
+                         "scene":  "res://tests/roguelite_visual.tscn",
+                         "checks":  19,
+                         "failures":  0,
+                         "evidence":  "res://tests/roguelite-visual-results.json"
+                     },
+    "integration_suite":  {
+                              "scene":  "res://tests/roguelite_verification.tscn",
+                              "checks":  65,
+                              "failures":  0
+                          },
+    "navigation_suite":  {
+                             "scene":  "res://tests/roguelite_navigation.tscn",
+                             "checks":  12,
+                             "failures":  0
+                         },
+    "flow_suite":  {
+                       "scene":  "res://tests/roguelite_flows.tscn",
+                       "checks":  8,
+                       "failures":  0
+                   },
+    "normal_bot":  {
+                       "scene":  "res://tests/roguelite_bot.tscn",
+                       "seeds":  [
+                                     42,
+                                     101,
+                                     2026,
+                                     7,
+                                     73,
+                                     31415
+                                 ],
+                       "victories":  6,
+                       "runs":  6,
+                       "floors_per_run":  3,
+                       "all_unreachable_enemy_counts":  0,
+                       "all_blocked_movement_seconds":  0,
+                       "time_scale_note":  "The first seed ran at 1x; the remaining seeds were accelerated with Summer GameSpeed 5 after it completed. Normal stats, input and automatic combat throughout.",
+                       "results":  [
+                                       {
+                                           "seed":  42,
+                                           "outcome":  "victory",
+                                           "sim_seconds":  73.05,
+                                           "real_seconds":  73.029,
+                                           "hp":  125,
+                                           "level":  7,
+                                           "kills":  33
+                                       },
+                                       {
+                                           "seed":  101,
+                                           "outcome":  "victory",
+                                           "sim_seconds":  65.15,
+                                           "real_seconds":  23.163,
+                                           "hp":  102,
+                                           "level":  7,
+                                           "kills":  33
+                                       },
+                                       {
+                                           "seed":  2026,
+                                           "outcome":  "victory",
+                                           "sim_seconds":  75.8,
+                                           "real_seconds":  15.17,
+                                           "hp":  100,
+                                           "level":  7,
+                                           "kills":  33
+                                       },
+                                       {
+                                           "seed":  7,
+                                           "outcome":  "victory",
+                                           "sim_seconds":  73.25,
+                                           "real_seconds":  14.661,
+                                           "hp":  100,
+                                           "level":  7,
+                                           "kills":  33
+                                       },
+                                       {
+                                           "seed":  73,
+                                           "outcome":  "victory",
+                                           "sim_seconds":  66.43,
+                                           "real_seconds":  13.294,
+                                           "hp":  100,
+                                           "level":  7,
+                                           "kills":  33
+                                       },
+                                       {
+                                           "seed":  31415,
+                                           "outcome":  "victory",
+                                           "sim_seconds":  91.38,
+                                           "real_seconds":  18.289,
+                                           "hp":  175,
+                                           "level":  7,
+                                           "kills":  33
+                                       }
+                                   ]
+                   },
+    "performance":  {
+                        "context":  "combat, all hostiles present, 1282x997 embedded",
+                        "draw_calls":  332.63,
+                        "primitives":  37694.27,
+                        "nodes":  590,
+                        "static_memory_mb":  66.05,
+                        "wall_clock_30_frames_seconds":  0.101,
+                        "measured_uncapped_fps":  296.59,
+                        "monitor_fps_unreliable":  26
+                    },
+    "save_isolation":  {
+                           "normal_profile_before":  "missing",
+                           "normal_profile_after":  "missing",
+                           "real_unchanged":  true,
+                           "test_profile":  "user://gridkit_test_profile.cfg",
+                           "note":  "No normal profile file existed in this run; the test process created and wrote only its test profile."
+                       },
+    "puzzle_core":  {
+                        "unchanged":  [
+                                          "scripts/grid.gd",
+                                          "scripts/grid_entity.gd",
+                                          "scripts/tick_manager.gd",
+                                          "scripts/input_router.gd",
+                                          "scripts/box.gd",
+                                          "scripts/autoload/level_manager.gd",
+                                          "scripts/visuals.gd",
+                                          "game.tscn",
+                                          "project.godot",
+                                          "screens/main_menu.tscn"
+                                      ],
+                        "puzzle_screenshot":  "res://docs/screenshots/puzzle_after_visual_redesign.png"
+                    },
+    "errors":  [
+
+               ],
+    "known_warnings":  [
+                           "scripts/visuals.gd lines 240-241 existing integer-division warnings"
+                       ]
+}

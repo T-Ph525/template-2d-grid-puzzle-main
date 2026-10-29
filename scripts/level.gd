@@ -46,6 +46,7 @@ const LEGEND := {
 const PlayerScript := preload("res://scripts/player.gd")
 const BoxScript := preload("res://scripts/box.gd")
 const EnemyScript := preload("res://scripts/enemy.gd")
+const RogueVisuals := preload("res://scripts/roguelite/roguelite_art.gd")
 
 var grid: Grid
 var player: GridEntity
@@ -55,6 +56,8 @@ var _doors := {}        # Vector2i -> Door
 var _goals := []        # Array[Vector2i] (channel-0 plates double as win goals)
 var _entities := {}     # Vector2i -> GridEntity (turn-based grid occupancy)
 var _movers := []       # Array[GridEntity] (player + boxes; live occupancy in both modes)
+var _rogue_floor_cells: Array = []
+var _rogue_wall_cells: Array = []
 
 # --- color-channel state ---
 var _plates := []          # Array of { cell, channel, vis, pressed }
@@ -91,7 +94,8 @@ func build(map_lines: Array, grid_ref: Grid, tick_manager: TickManager) -> void:
 					_add_star(cell)
 				"enemy", "tank":
 					_add_tile(cell, Visuals.FLOOR_TEX)
-					_spawn(EnemyScript, "enemy", cell, Visuals.make_survivor_enemy(entry.type == "tank") if rogue_run != null else Visuals.make_enemy(), tick_manager)
+					var enemy_visual: Node3D = RogueVisuals.make_enemy(entry.type == "tank") if rogue_run != null else Visuals.make_enemy()
+					_spawn(EnemyScript, "enemy", cell, enemy_visual, tick_manager)
 					if rogue_run != null:
 						var enemy = _entities[cell]
 						enemy.configure_rogue(entry.type == "tank", rogue_run.floor_number)
@@ -100,7 +104,7 @@ func build(map_lines: Array, grid_ref: Grid, tick_manager: TickManager) -> void:
 				"exit":
 					_add_tile(cell, Visuals.FLOOR_TEX)
 					exit_cell = cell
-					exit_visual = Visuals.make_exit()
+					exit_visual = RogueVisuals.make_exit_portal() if rogue_run != null else Visuals.make_exit()
 					exit_visual.position = grid.cell_to_world(cell) + Vector3(0, 0.025, 0)
 					add_child(exit_visual)
 				"health":
@@ -110,13 +114,15 @@ func build(map_lines: Array, grid_ref: Grid, tick_manager: TickManager) -> void:
 					_add_door(cell, channel, map_lines)
 				"player":
 					_add_tile(cell, Visuals.FLOOR_TEX)
-					var robot: bool = rogue_run == null and LevelManager.player_visual == LevelManager.PLAYER_ROBOT
-					_spawn(PlayerScript, "player", cell, Visuals.make_player(robot), tick_manager)
+					var player_visual: Node3D = RogueVisuals.make_player() if rogue_run != null else Visuals.make_player(LevelManager.player_visual == LevelManager.PLAYER_ROBOT)
+					_spawn(PlayerScript, "player", cell, player_visual, tick_manager)
 				"box":
 					_add_tile(cell, Visuals.FLOOR_TEX)
 					_spawn_box(cell, tick_manager)
 				_:
 					_add_tile(cell, Visuals.FLOOR_TEX)
+	if rogue_run != null:
+		_finalize_roguelite_geometry()
 
 # --- color channels (evaluated every frame; cheap for a handful of tiles) ---
 
@@ -231,11 +237,18 @@ func is_won() -> bool:
 # --- builders ---
 
 func _add_tile(cell: Vector2i, texture_path: String) -> void:
+	if rogue_run != null:
+		_rogue_floor_cells.append(cell)
+		return
 	var t := Visuals.make_tile(texture_path)
 	t.position = grid.cell_to_world(cell)
 	add_child(t)
 
 func _add_wall(cell: Vector2i) -> void:
+	if rogue_run != null:
+		_rogue_wall_cells.append(cell)
+		_walls[cell] = true
+		return
 	var m: StaticBody3D = Visuals.make_wall()
 	# Offset y by 0.5 so the wall cube sits ON the floor, not half-buried.
 	m.position = grid.cell_to_world(cell) + Vector3(0, 0.5, 0)
@@ -266,7 +279,8 @@ func _add_star(cell: Vector2i) -> void:
 
 func _add_door(cell: Vector2i, channel: int, map_lines: Array) -> void:
 	_add_tile(cell, Visuals.FLOOR_TEX)  # floor under the door (visible when it opens)
-	var d := Visuals.make_door(Visuals.channel_color(channel))
+	var channel_tint := Visuals.channel_color(channel)
+	var d: Door = RogueVisuals.make_door(channel_tint) if rogue_run != null else Visuals.make_door(channel_tint)
 	# Sit the slab on the floor, dropped 0.05 so its bottom face doesn't z-fight the floor tile.
 	d.position = grid.cell_to_world(cell) + Vector3(0, 0.45, 0)
 	# Auto-orient: a door set into a VERTICAL wall (walls above & below) turns 90 degrees so you
@@ -353,7 +367,7 @@ var combat_active: bool = true
 var enemies: Array = []
 var drops: Array = []
 var exit_cell := Vector2i(-1, -1)
-var exit_visual: MeshInstance3D
+var exit_visual: Node3D
 var exit_active: bool = false
 var _distance_field: Dictionary = {}
 var _nav_delay: float = 0.0
@@ -443,6 +457,7 @@ func _rogue_process(delta: float) -> void:
 			if drop.kind == "xp":
 				floor_metrics.xp_gained += int(drop.amount)
 				rogue_run.add_xp(drop.amount)
+				Feedback.pickup(self, node.global_position, "xp")
 			else:
 				if rogue_run.hp >= rogue_run.max_hp:
 					continue
@@ -450,6 +465,7 @@ func _rogue_process(delta: float) -> void:
 				rogue_run.hp += healed
 				floor_metrics.healing += healed
 				feedback_counts.heal += 1
+				Feedback.pickup(self, node.global_position, "health")
 				Feedback.number(self, player.global_position, healed, Color(0.5, 1, 0.6), "+")
 			node.queue_free()
 			drops.remove_at(i)
@@ -460,7 +476,10 @@ func _rogue_process(delta: float) -> void:
 		feedback_counts.unlock += 1
 		Feedback.ring(self, grid.cell_to_world(exit_cell), Color(0.4, 1, 0.65), 0.8, 0.9)
 	if exit_visual != null and exit_active != was_active:
-		exit_visual.material_override = Visuals._flat(Color(0.4, 1.0, 0.65) if exit_active else Color(0.25, 0.3, 0.28))
+		if exit_visual.has_method("set_active"):
+			exit_visual.set_active(exit_active)
+		else:
+			exit_visual.material_override = Visuals._flat(Color(0.4, 1.0, 0.65) if exit_active else Color(0.25, 0.3, 0.28))
 	if exit_active and current_cell == exit_cell:
 		combat_active = false
 		floor_exit.emit()
@@ -477,7 +496,7 @@ func enemy_defeated(enemy: Node3D, reward: int) -> void:
 		add_drop(enemy.global_position, "health", 15)
 
 func add_drop(world_position: Vector3, kind: String, amount: int) -> void:
-	var visual := Visuals.make_drop(kind)
+	var visual: Node3D = RogueVisuals.make_drop(kind) if rogue_run != null else Visuals.make_drop(kind)
 	visual.position = Vector3(world_position.x, 0.2, world_position.z)
 	add_child(visual)
 	drops.append({"node": visual, "kind": kind, "amount": amount})
@@ -559,3 +578,13 @@ func steer_around_peers(actor: Node3D, desired: Vector3) -> Vector3:
 			avoidance += offset.normalized() * (0.6 - distance)
 	avoidance -= forward * avoidance.dot(forward)
 	return (forward + avoidance.limit_length(0.12)).normalized() * desired.length()
+func decorate_roguelite(world_environment: WorldEnvironment) -> void:
+	if rogue_run == null:
+		return
+	RogueVisuals.decorate_level(self, world_environment)
+func _finalize_roguelite_geometry() -> void:
+	if _rogue_floor_cells.is_empty():
+		return
+	add_child(RogueVisuals.make_floor_layer(_rogue_floor_cells, rogue_run.floor_number))
+	add_child(RogueVisuals.make_wall_layer(_rogue_wall_cells, rogue_run.floor_number))
+	add_child(RogueVisuals.make_wall_collision_body(_rogue_wall_cells))

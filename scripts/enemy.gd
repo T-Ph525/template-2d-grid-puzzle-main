@@ -70,7 +70,6 @@ var dead: bool = false
 var contact_cooldown: float = 0.0
 var hit_flash: float = 0.0
 var tank: bool = false
-var _flash_visible: bool = false
 var windup_remaining: float = 0.0
 var telegraph: MeshInstance3D
 var telegraphs_started: int = 0
@@ -79,10 +78,12 @@ var _has_nav_waypoint: bool = false
 var _nav_waypoint: Vector3 = Vector3.ZERO
 var _nav_stall_seconds: float = 0.0
 var awake: bool = true
+var _actor_visual: Node3D
 
 func configure_rogue(is_tank: bool, floor_number: int) -> void:
 	tank = is_tank
 	awake = not tank
+	_actor_visual = get_node_or_null("Visual") as Node3D
 	health = (85 if tank else 36) + floor_number * 6
 	contact_damage = 22 if tank else 12
 	chase_speed = 1.35 if tank else 2.15
@@ -104,12 +105,12 @@ func _rogue_physics(delta: float) -> void:
 			return
 	contact_cooldown = maxf(0.0, contact_cooldown - delta)
 	hit_flash = maxf(0.0, hit_flash - delta)
-	var visual := get_node_or_null("Visual") as MeshInstance3D
-	if visual != null and _flash_visible != (hit_flash > 0.0):
-		_flash_visible = hit_flash > 0.0
-		visual.material_override = Visuals._flat(Color.WHITE if hit_flash > 0.0 else (Color(0.7, 0.35, 0.85) if tank else Color(0.95, 0.35, 0.22)))
+	if _actor_visual == null:
+		_actor_visual = get_node_or_null("Visual") as Node3D
 	if windup_remaining > 0.0:
 		velocity = Vector3.ZERO
+		if _actor_visual != null and _actor_visual.has_method("set_moving"):
+			_actor_visual.set_moving(false)
 		windup_remaining = maxf(0.0, windup_remaining - delta)
 		if windup_remaining == 0.0:
 			var target_position: Vector3 = level.player.global_position
@@ -117,6 +118,8 @@ func _rogue_physics(delta: float) -> void:
 			if global_position.distance_to(target_position) <= 0.95 and level.has_line_of_sight(global_position, target_position):
 				level.player.take_damage(contact_damage)
 			contact_cooldown = 0.9
+			if _actor_visual != null and _actor_visual.has_method("play_attack"):
+				_actor_visual.play_attack(0.28 if tank else 0.2)
 			cancel_attack()
 		return
 	grid_pos = level.grid.world_to_cell(global_position)
@@ -128,6 +131,11 @@ func _rogue_physics(delta: float) -> void:
 	offset.y = 0.0
 	velocity = offset.normalized() * chase_speed if offset.length() > 0.08 else Vector3.ZERO
 	velocity = level.steer_around_peers(self, velocity)
+	if _actor_visual != null:
+		if _actor_visual.has_method("set_moving"):
+			_actor_visual.set_moving(velocity.length_squared() > 0.01)
+		if _actor_visual.has_method("face_direction") and velocity.length_squared() > 0.01:
+			_actor_visual.face_direction(velocity)
 	var before_move := global_position
 	move_and_slide()
 	_nav_stall_seconds = _nav_stall_seconds + delta if before_move.distance_to(global_position) < 0.001 else 0.0
@@ -137,6 +145,8 @@ func _rogue_physics(delta: float) -> void:
 		telegraphs_started += 1
 		telegraph = level.attack_telegraph(global_position, windup_remaining)
 		velocity = Vector3.ZERO
+		if _actor_visual != null and _actor_visual.has_method("play_windup"):
+			_actor_visual.play_windup(windup_remaining)
 
 func take_damage(amount: int) -> void:
 	if dead or level == null or level.rogue_run == null or not level.combat_active:
@@ -149,11 +159,17 @@ func take_damage(amount: int) -> void:
 	health -= applied
 	level.damage_feedback(global_position, applied, false)
 	hit_flash = 0.12
+	if _actor_visual != null and _actor_visual.has_method("play_hit"):
+		_actor_visual.play_hit()
 	if health <= 0:
 		dead = true
 		cancel_attack()
+		if _actor_visual != null and _actor_visual.has_method("play_death"):
+			_actor_visual.play_death()
+		collision_layer = 0
+		collision_mask = 0
 		level.enemy_defeated(self, xp_reward)
-		queue_free()
+		get_tree().create_timer(0.55).timeout.connect(queue_free)
 
 func cancel_attack() -> void:
 	windup_remaining = 0.0

@@ -1,0 +1,204 @@
+{
+  "captures": [
+    {
+      "name": "roguelite_visual_idle",
+      "path": "C:/Users/Administrator/AppData/Roaming/Godot/app_userdata/GridKit/roguelite_visual_idle.png",
+      "size": "(1282, 997)"
+    },
+    {
+      "name": "roguelite_visual_move",
+      "path": "C:/Users/Administrator/AppData/Roaming/Godot/app_userdata/GridKit/roguelite_visual_move.png",
+      "size": "(1282, 997)"
+    },
+    {
+      "name": "roguelite_visual_attack",
+      "path": "C:/Users/Administrator/AppData/Roaming/Godot/app_userdata/GridKit/roguelite_visual_attack.png",
+      "size": "(1282, 997)"
+    },
+    {
+      "name": "roguelite_visual_windup",
+      "path": "C:/Users/Administrator/AppData/Roaming/Godot/app_userdata/GridKit/roguelite_visual_windup.png",
+      "size": "(1282, 997)"
+    },
+    {
+      "name": "roguelite_visual_enemy_attack",
+      "path": "C:/Users/Administrator/AppData/Roaming/Godot/app_userdata/GridKit/roguelite_visual_enemy_attack.png",
+      "size": "(1282, 997)"
+    },
+    {
+      "name": "roguelite_visual_hit",
+      "path": "C:/Users/Administrator/AppData/Roaming/Godot/app_userdata/GridKit/roguelite_visual_hit.png",
+      "size": "(1282, 997)"
+    },
+    {
+      "name": "roguelite_visual_death",
+      "path": "C:/Users/Administrator/AppData/Roaming/Godot/app_userdata/GridKit/roguelite_visual_death.png",
+      "size": "(1282, 997)"
+    },
+    {
+      "name": "roguelite_visual_clear",
+      "path": "C:/Users/Administrator/AppData/Roaming/Godot/app_userdata/GridKit/roguelite_visual_clear.png",
+      "size": "(1282, 997)"
+    },
+    {
+      "name": "roguelite_visual_player_death",
+      "path": "C:/Users/Administrator/AppData/Roaming/Godot/app_userdata/GridKit/roguelite_visual_player_death.png",
+      "size": "(1282, 997)"
+    }
+  ],
+  "checks": 19,
+  "failures": [],
+  "performance": {
+    "avg_draw_calls": 332.63,
+    "avg_primitives": 37694.27,
+    "context": "combat, all hostiles present",
+    "measured_fps": 296.59,
+    "monitor_fps": 26.0,
+    "node_count": 590.0,
+    "sample_seconds": 0.101,
+    "static_memory_mb": 66.05
+  },
+  "profile": {
+    "active_path": "user://gridkit_test_profile.cfg",
+    "real_hash_before": "missing",
+    "real_hash_now": "missing",
+    "real_path": "user://gridkit_profile.cfg",
+    "real_unchanged": true,
+    "test_mode": true
+  },
+  "records": [
+    {
+      "detail": null,
+      "name": "player uses 3D actor visual",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "visual animation API is present",
+      "passed": true
+    },
+    {
+      "detail": "idle",
+      "name": "player starts idle",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "shadow chaser distinct visual",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "stone tank distinct visual",
+      "passed": true
+    },
+    {
+      "detail": {
+        "distance": 0.866665840148926,
+        "state": "move"
+      },
+      "name": "movement state and displacement",
+      "passed": true
+    },
+    {
+      "detail": {
+        "hp": 978,
+        "state": "attack"
+      },
+      "name": "attack state starts on the damaging frame",
+      "passed": true
+    },
+    {
+      "detail": {
+        "state": "windup",
+        "windup": 0.45
+      },
+      "name": "enemy windup delays damage",
+      "passed": true
+    },
+    {
+      "detail": {
+        "hp": 88,
+        "state": "attack"
+      },
+      "name": "enemy attack state after resolved windup",
+      "passed": true
+    },
+    {
+      "detail": "hit",
+      "name": "player hit state",
+      "passed": true
+    },
+    {
+      "detail": {
+        "avg_draw_calls": 332.63,
+        "avg_primitives": 37694.27,
+        "context": "combat, all hostiles present",
+        "measured_fps": 296.59,
+        "monitor_fps": 26.0,
+        "node_count": 590.0,
+        "sample_seconds": 0.101,
+        "static_memory_mb": 66.05
+      },
+      "name": "draw-call budget for one floor",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "enemy death state",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "exit portal opens after clear",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "decorative base has no collision",
+      "passed": true
+    },
+    {
+      "detail": {
+        "cells": 177,
+        "shapes": 177
+      },
+      "name": "wall collision bodies preserved",
+      "passed": true
+    },
+    {
+      "detail": {
+        "center": "(9.0, 0.0, 7.0)",
+        "position": "(9.0, 21.0, 26.0)",
+        "size": 15.7093601226807
+      },
+      "name": "three-quarter orthographic camera",
+      "passed": true
+    },
+    {
+      "detail": {
+        "hud": "(1246.0, 122.0)",
+        "viewport": "(1282.0, 997.0)"
+      },
+      "name": "HUD anchors fit viewport",
+      "passed": true
+    },
+    {
+      "detail": {
+        "active_path": "user://gridkit_test_profile.cfg",
+        "real_hash_before": "missing",
+        "real_hash_now": "missing",
+        "real_path": "user://gridkit_profile.cfg",
+        "real_unchanged": true,
+        "test_mode": true
+      },
+      "name": "real profile unchanged",
+      "passed": true
+    },
+    {
+      "detail": null,
+      "name": "player death state and terminal overlay",
+      "passed": true
+    }
+  ]
+}

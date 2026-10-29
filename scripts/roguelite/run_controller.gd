@@ -35,6 +35,7 @@ func build_floor() -> void:
 	var map: Array = validated_map(data.map, run.floor_number)
 	var grid := Grid.new(String(map[0]).length(), map.size(), 1.0)
 	level.build(map, grid, manager.tick_manager)
+	level.decorate_roguelite(manager.get_node_or_null("WorldEnvironment"))
 	level.lost.connect(_on_death)
 	level.floor_exit.connect(_on_exit)
 	for child in level.get_children():
@@ -45,12 +46,15 @@ func build_floor() -> void:
 	var camera: Camera3D = manager.camera
 	camera.projection = Camera3D.PROJECTION_ORTHOGONAL
 	camera.keep_aspect = Camera3D.KEEP_HEIGHT
-	# Include the HUD margins and the whole map at common window aspects.
+	camera.near = 0.1
+	camera.far = 100.0
+	# Three-quarter miniature view. Margin is measured against the projected map, not
+	# just its raw cell count, so the whole floor stays readable under the HUD.
 	var viewport_size: Vector2 = manager.get_viewport().get_visible_rect().size
 	var aspect := viewport_size.x / maxf(viewport_size.y, 1.0)
-	camera.size = maxf(grid.height + 4.0, (grid.width + 2.0) / aspect)
-	camera.position = grid.center_world() + Vector3(0, 25, 0)
-	camera.look_at(grid.center_world(), Vector3(0, 0, -1))
+	camera.size = maxf((grid.width + 1.2) / aspect, grid.height * 0.69 + 2.7)
+	camera.position = grid.center_world() + Vector3(0, 21, 19)
+	camera.look_at(grid.center_world() + Vector3(0, 0, -0.25), Vector3.UP)
 	LevelManager.profile.best_floor = maxi(LevelManager.profile.best_floor, run.floor_number)
 	LevelManager.save_settings()
 	hud.refresh(run, level.enemies.size(), level.exit_active)
